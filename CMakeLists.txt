@@ -5,5 +5,5 @@ set(CMAKE_CXX_STANDARD 14)
 find_package(Boost COMPONENTS program_options filesystem REQUIRED)
 include_directories( ${Boost_INCLUDE_DIRS} )
 
-add_executable(myls main.cpp UserChoise.cpp UserChoise.h)
+add_executable(myls main.cpp UserChoise.cpp UserChoise.h Sort.cpp Sort.h)
 target_link_libraries(myls ${Boost_LIBRARIES})
