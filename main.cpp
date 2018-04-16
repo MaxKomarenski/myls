@@ -2,24 +2,14 @@
 #include <vector>
 #include "boost/filesystem/operations.hpp"
 
-bool find_help(std::vector<std::string> &v){
-    for (int i = 0; i < v.size(); i++){
-        if(v.at(i) == "-h" || v.at(i) == "--help"){
-            std::cerr<<"HOW TO USE\n myls \n";
-            return true;
-        }
-    }
-
-    return false;
-}
 
 
 
 
+bool find_help(std::vector<std::string> &v);
 int main(int argc, char *argv[]) {
 
-    if (argc > 1)
-    {
+
         std::vector<std::string> strs;
         strs.assign(argv + 1, argv + argc);
 
@@ -33,7 +23,17 @@ int main(int argc, char *argv[]) {
         }
 
         return 0;
+
+
+}
+
+bool find_help(std::vector<std::string> &v){
+    for (int i = 0; i < v.size(); i++){
+        if(v.at(i) == "-h" || v.at(i) == "--help"){
+            std::cerr<<"HOW TO USE\n myls \n";
+            return true;
+        }
     }
 
-        return 1;
+    return false;
 }
