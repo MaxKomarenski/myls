@@ -2,6 +2,7 @@
 // Created by Victor on 16.04.2018.
 //
 
+#include <cstring>
 #include "UserChoise.h"
 
 UserChoise::UserChoise() {
@@ -59,3 +60,36 @@ const std::map<std::string, bool> &UserChoise::getChoises() const {
 void UserChoise::setChoises(const std::map<std::string, bool> &choises) {
     UserChoise::choises = choises;
 }
+
+std::vector<std::string> UserChoise::parseArgs(int argc, char **argv) {
+    std::vector<std::string> dirs;
+
+    for(int i = 1; i< argc ; i++){
+
+        if(std::strcmp(argv[i], "--sort=U") == 0)
+            changeChoise(unsorted);
+        else if(std::strcmp(argv[i], "--sort=S") == 0)
+            changeChoise(sortBySize);
+        else if(std::strcmp(argv[i], "--sort=t") == 0)
+            changeChoise(sortByLastModifyTime);
+        else if(std::strcmp(argv[i], "--sort=X") == 0)
+            changeChoise(sortByExtension);
+        else if(std::strcmp(argv[i], "--sort=N") == 0)
+            changeChoise(sortByName);
+        else if(std::strcmp(argv[i], "-r") == 0)
+            reverceSortingOrder = true;
+        else if(std::strcmp(argv[i], "-F") == 0)
+            markedSpecialFiles = true;
+
+    }
+}
+
+void UserChoise::changeChoise(std::string choise) {
+
+    for(auto elem:choises){
+        choises[elem.first] = false;
+
+    }
+    choises[choise] = true;
+}
+

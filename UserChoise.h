@@ -7,6 +7,8 @@
 
 #include <map>
 #include <string>
+#include <vector>
+
 class UserChoise {
 
 private:
@@ -19,7 +21,13 @@ private:
 
     bool directoriesFirst;
     bool reverceSortingOrder;
+    bool specialFiles;
+    bool markedSpecialFiles;
+    std::map<std::string, bool> choises;
+    void changeChoise(std::string choise);
 public:
+
+    std::vector<std::string> parseArgs(int argc, char *argv[]);
     bool isDirectoriesFirst() const;
 
     void setDirectoriesFirst(bool directoriesFirst);
@@ -32,9 +40,6 @@ public:
 
     void setChoises(const std::map<std::string, bool> &choises);
 
-private:
-
-    std::map<std::string, bool> choises;
 public:
     const std::string &getSortByName() const;
 
