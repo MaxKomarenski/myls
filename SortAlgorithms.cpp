@@ -84,3 +84,12 @@ void SortAlgorithms::at_first_show_the_directories(std::vector<std::string> &v, 
     if(type)
         std::reverse(v.begin(), v.end());
 }
+
+SortAlgorithms::sort_method_t SortAlgorithms::get_method_by_name(std::string name, UserChoise choise) {
+
+    if(name == choise.getSortByName()){
+        return SortAlgorithms::sort_by_name;
+    }
+
+    return nullptr;
+}

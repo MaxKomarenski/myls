@@ -152,5 +152,13 @@ bool UserChoise::isDetailedDescription() const {
     return detailedDescription;
 }
 
+const std::string &UserChoise::getDirectoriesFirstToken() const {
+    return directoriesFirstToken;
+}
+
+const std::string &UserChoise::getSpecialFilesToken() const {
+    return specialFilesToken;
+}
+
 
 

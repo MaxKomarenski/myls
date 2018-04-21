@@ -25,6 +25,14 @@ private:
     const std::string sortByLastModifyTime ="sortByLastModifyTime";
     const std::string unsorted = "unsorted";
     const std::string sortByExtension = "sortByExtension";
+    const std::string directoriesFirstToken = "directoriesFirst";
+    const std::string specialFilesToken = "specialFiles";
+public:
+    const std::string &getDirectoriesFirstToken() const;
+
+    const std::string &getSpecialFilesToken() const;
+
+private:
     bool detailedDescription;
     bool directoriesFirst; // Опція згідно якої директорія виводится перщою
     bool reverceSortingOrder; // Опція згідно якої поряд сорутвання інвертується

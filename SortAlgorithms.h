@@ -11,6 +11,7 @@
 #include <sys/stat.h>
 #include <map>
 #include <fstream>
+#include "UserChoise.h"
 
 
 
@@ -26,7 +27,7 @@ public:
     void show_special_file(std::vector<std::string> &v, bool type);
 
     typedef void (SortAlgorithms::*sort_method_t)(std::vector<std::string>&v, bool type);
-    sort_method_t get_method_by_name(std::string name);
+    sort_method_t get_method_by_name(std::string name, UserChoise choise);
 };
 
 
