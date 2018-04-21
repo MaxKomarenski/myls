@@ -59,7 +59,15 @@ void SortAlgorithms::show_special_file(std::vector<std::string> &v, bool type) {
 }
 
 void SortAlgorithms::sort_by_extension(std::vector<std::string> &v, bool type) {
+    std::map<std::string, std::string> m;
+    for(std::string s:v){
+        m[s] = s.substr(s.find_last_of(".") + 1);
+    }
 
+    std::sort(v.begin(),v.end(), [&m](const std::string& a, const std::string& b){return m[a] > m[b]; });
+
+    if(type)
+        std::reverse(v.begin(), v.end());
 }
 
 void SortAlgorithms::sort_by_name(std::vector<std::string> &v, bool type) {
