@@ -21,6 +21,7 @@ bool find_help(std::vector<std::string> &v){
 std::vector<std::string> getFiles(std::string file){
     std::vector<std::string> v;
     boost::filesystem::path path =  file;
+
     for(boost::filesystem::path  p : boost::filesystem::directory_iterator(path.string())){
         v.push_back(p.filename().string());
     }
