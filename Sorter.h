@@ -9,6 +9,7 @@
 #include "UserChoise.h"
 #include <vector>
 #include <string>
+#include "Typedefs.h"
 
 
 class Sorter {
@@ -17,9 +18,7 @@ private:
     SortAlgorithms algorithms;
     UserChoise userChoice;
 
-    typedef void (SortAlgorithms::*sort_method_t)(std::vector<std::string>&v, bool type);
-    typedef std::map<bool, sort_method_t> ways_of_sorting;
-    ways_of_sorting  sorting_ways;
+    sort_method_t  sort_method;
 
 
 public:

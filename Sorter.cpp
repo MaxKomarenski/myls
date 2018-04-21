@@ -10,10 +10,8 @@ Sorter::Sorter(const SortAlgorithms &algorithms, const UserChoise &userChoise) :
     for(auto choice : userChoise.getChoises()){
 
         if(choice.second){
-
-
+            sort_method  = algorithms.get_method_by_name(choice.first, userChoise);
         }
-
     }
 
 
