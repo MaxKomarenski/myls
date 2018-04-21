@@ -5,8 +5,14 @@
 #ifndef MYLS_SORTER_H
 #define MYLS_SORTER_H
 
+#include "SortAlgorithms.h"
 
 class Sorter {
+
+private:
+    SortAlgorithms algorithms;
+public:
+    Sorter(const SortAlgorithms &algorithms);
 
 };
 

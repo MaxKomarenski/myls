@@ -14,7 +14,7 @@
 
 
 
-class Sort {
+class SortAlgorithms {
 public:
     long GetFileSize(std::string filename);
     bool is_dir(std::string path);

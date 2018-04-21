@@ -8,20 +8,20 @@
 #include <boost/filesystem/operations.hpp>
 #include "SortAlgorithms.h"
 
-long Sort::GetFileSize(std::string filename)
+long SortAlgorithms::GetFileSize(std::string filename)
 {
     struct stat stat_buf;
     int rc = stat(filename.c_str(), &stat_buf);
     return rc == 0 ? stat_buf.st_size : -1;
 }
 
-bool Sort::is_dir(std::string path) {
+bool SortAlgorithms::is_dir(std::string path) {
     struct stat buf;
     stat(path.c_str(), &buf);
     return S_ISDIR(buf.st_mode);
 }
 
-void Sort::sort_by_size(std::vector<std::string> &v, bool type){
+void SortAlgorithms::sort_by_size(std::vector<std::string> &v, bool type){
     std::map<std::string, long> m;
 
     for (auto const& element : v) {
@@ -37,7 +37,7 @@ void Sort::sort_by_size(std::vector<std::string> &v, bool type){
 
 }
 
-void Sort::sort_by_last_write_time(std::vector<std::string> &v, bool type){
+void SortAlgorithms::sort_by_last_write_time(std::vector<std::string> &v, bool type){
     std::map<std::string, long> m;
 
     for(std::string s:v){
@@ -54,15 +54,15 @@ void Sort::sort_by_last_write_time(std::vector<std::string> &v, bool type){
         std::reverse(v.begin(), v.end());
 }
 
-void Sort::show_special_file(std::vector<std::string> &v, bool type) {
+void SortAlgorithms::show_special_file(std::vector<std::string> &v, bool type) {
 
 }
 
-void Sort::sort_by_extension(std::vector<std::string> &v, bool type) {
+void SortAlgorithms::sort_by_extension(std::vector<std::string> &v, bool type) {
 
 }
 
-void Sort::sort_by_name(std::vector<std::string> &v, bool type) {
+void SortAlgorithms::sort_by_name(std::vector<std::string> &v, bool type) {
 
     std::sort(v.begin(),v.end());
 
@@ -70,7 +70,7 @@ void Sort::sort_by_name(std::vector<std::string> &v, bool type) {
         std::reverse(v.begin(), v.end());
 }
 
-void Sort::at_first_show_the_directories(std::vector<std::string> &v, bool type) {
+void SortAlgorithms::at_first_show_the_directories(std::vector<std::string> &v, bool type) {
     std::map<std::string, long> m;
     for(std::string s:v){
         if(is_dir(s))

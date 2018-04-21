@@ -3,3 +3,5 @@
 //
 
 #include "Sorter.h"
+
+Sorter::Sorter(const SortAlgorithms &algorithms) : algorithms(algorithms) {}
