@@ -64,6 +64,7 @@ void UserChoise::setChoises(const std::map<std::string, bool> &choises) {
 
 std::vector<std::string> UserChoise::parseArgs(int argc, char **argv) {
     std::vector<std::string> dirs;
+    bool flag = false;
 
     std::string option;
     for(int i = 1; i< argc ; i++){
@@ -101,8 +102,18 @@ std::vector<std::string> UserChoise::parseArgs(int argc, char **argv) {
             markedSpecialFiles = true;
         else if(std::strcmp(argv[i], "-l") == 0){
             detailedDescription = true;
+        } else{
+            struct stat sb;
+            if(stat(argv[i], &sb) != -1){
+                dirs.emplace_back(argv[i]);
+            } else{
+                std::cerr<<"Problem with "<<argv[i]<<" no such file"<<std::endl;
+                flag = true;
+            }
         }
-
+    }
+    if(dirs.empty() && !flag){
+        dirs.push_back(boost::filesystem::current_path().string());
     }
     return dirs;
 }
