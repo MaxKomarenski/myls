@@ -11,10 +11,11 @@ UserChoise::UserChoise() {
     choises[sortByExtension] = false;
     choises[sortByLastModifyTime] = false;
     choises[unsorted] = false;
-
+    detailedDescription = false;
     directoriesFirst = false;
     reverceSortingOrder = false;
-
+    specialFiles = false;
+    markedSpecialFiles = false;
 }
 
 const std::string &UserChoise::getSortByName() const {
@@ -64,24 +65,46 @@ void UserChoise::setChoises(const std::map<std::string, bool> &choises) {
 std::vector<std::string> UserChoise::parseArgs(int argc, char **argv) {
     std::vector<std::string> dirs;
 
+    std::string option;
     for(int i = 1; i< argc ; i++){
+        if(boost::contains(argv[i],"--sort=")) {
+            option = argv[i];
+            int j = option.find('=');
+            for (; j < option.size(); j++) {
+                if (option[j] == '=') {
+                    continue;
+                }
+                if (option[j] == 'U') {
+                    changeChoise(unsorted);
+                }
+                else if (option[j] == 'S') {
+                    changeChoise(sortBySize);
+                }
+                else if (option[j] == 't') {
+                    changeChoise(sortByLastModifyTime);
+                } else if (option[j] == 'X') {
+                    changeChoise(sortByExtension);
+                } else if (option[j] == 'N') {
+                    changeChoise(sortByName);
+                }
+                else if (option[j] == 'D') {
+                    directoriesFirst = true;
+                }
+                else if (option[j] == 's') {
+                    specialFiles = true;
+                }
 
-        if(std::strcmp(argv[i], "--sort=U") == 0)
-            changeChoise(unsorted);
-        else if(std::strcmp(argv[i], "--sort=S") == 0)
-            changeChoise(sortBySize);
-        else if(std::strcmp(argv[i], "--sort=t") == 0)
-            changeChoise(sortByLastModifyTime);
-        else if(std::strcmp(argv[i], "--sort=X") == 0)
-            changeChoise(sortByExtension);
-        else if(std::strcmp(argv[i], "--sort=N") == 0)
-            changeChoise(sortByName);
-        else if(std::strcmp(argv[i], "-r") == 0)
+            }
+        } else if(std::strcmp(argv[i], "-r") == 0)
             reverceSortingOrder = true;
         else if(std::strcmp(argv[i], "-F") == 0)
             markedSpecialFiles = true;
+        else if(std::strcmp(argv[i], "-l") == 0){
+            detailedDescription = true;
+        }
 
     }
+    return dirs;
 }
 
 void UserChoise::changeChoise(std::string choise) {
@@ -92,4 +115,31 @@ void UserChoise::changeChoise(std::string choise) {
     }
     choises[choise] = true;
 }
+
+bool UserChoise::isSpecialFiles() const {
+    return specialFiles;
+}
+
+bool UserChoise::isMarkedSpecialFiles() const {
+    return markedSpecialFiles;
+}
+
+std::ostream &operator<<(std::ostream &os, const UserChoise &choise) {
+    std::stringstream ss;
+    os << " choises:\n ";
+    for(auto elem:choise.getChoises()) {
+        os  << elem.first<<" "<<elem.second<<"\n";
+    }
+    os << "dirs first "<< choise.directoriesFirst<<"\n";
+    os << "reverse sorting order "<<choise.reverceSortingOrder<<"\n";
+    os << "special files "<<choise.specialFiles<<"\n";
+    os << "marked special files "<<choise.markedSpecialFiles<<"\n";
+    return os;
+}
+
+bool UserChoise::isDetailedDescription() const {
+    return detailedDescription;
+}
+
+
 

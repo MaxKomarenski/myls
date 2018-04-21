@@ -8,6 +8,10 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <boost/algorithm/string/predicate.hpp>
+#include <ostream>
+#include <sstream>
+#include <iostream>
 
 class UserChoise {
 
@@ -18,11 +22,12 @@ private:
     const std::string sortByLastModifyTime ="sortByLastModifyTime";
     const std::string unsorted = "unsorted";
     const std::string sortByExtension = "sortByExtension";
+    bool detailedDescription;
+    bool directoriesFirst; // Опція згідно якої директорія виводится перщою
+    bool reverceSortingOrder; // Опція згідно якої поряд сорутвання інвертується
+    bool specialFiles; // спеціальні файли
+    bool markedSpecialFiles; // вказує  типи спеціальних файлів
 
-    bool directoriesFirst;
-    bool reverceSortingOrder;
-    bool specialFiles;
-    bool markedSpecialFiles;
     std::map<std::string, bool> choises;
     void changeChoise(std::string choise);
 public:
@@ -40,7 +45,6 @@ public:
 
     void setChoises(const std::map<std::string, bool> &choises);
 
-public:
     const std::string &getSortByName() const;
 
     const std::string &getSortBySize() const;
@@ -50,6 +54,14 @@ public:
     const std::string &getUnsorted() const;
 
     const std::string &getSortByExtension() const;
+
+    bool isSpecialFiles() const;
+
+    bool isMarkedSpecialFiles() const;
+
+    friend std::ostream &operator<<(std::ostream &os, const UserChoise &choise);
+
+    bool isDetailedDescription() const;
 
     UserChoise();
 

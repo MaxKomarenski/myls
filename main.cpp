@@ -4,6 +4,7 @@
 #include <sys/stat.h>
 #include "boost/filesystem/operations.hpp"
 #include "Sort.h"
+#include "UserChoise.h"
 
 
 bool find_help(std::vector<std::string> &v){
@@ -30,25 +31,31 @@ std::vector<std::string> getFiles(){
 
 int main(int argc, char *argv[]) {
 
-    if (argc > 1)
-    {
-        std::vector<std::string> strs;
-        strs.assign(argv + 1, argv + argc);
+//    if (argc > 1)
+//    {
+//        std::vector<std::string> strs;
+//        strs.assign(argv + 1, argv + argc);
+//
+//        if(find_help(strs)){
+//            return 0;
+//        }
+//
+//        Sort sort;
+//
+//        std::vector<std::string> vector = getFiles();
+//
+//        sort.sort_by_size(vector);
+//
+//        for (auto const& element : vector) {
+//
+//            std::cout << element << std::endl;
+//        }
 
-        if(find_help(strs)){
-            return 0;
-        }
+    UserChoise userChoise;
+    userChoise.parseArgs(argc, argv);
 
-        Sort sort;
 
-        std::vector<std::string> vector = getFiles();
-
-        sort.sort_by_size(vector);
-
-        for (auto const& element : vector) {
-
-            std::cout << element << std::endl;
-        }
+    std::cout<<userChoise;
 
 
         return 0;
@@ -56,5 +63,3 @@ int main(int argc, char *argv[]) {
 
 }
 
-        return 1;
-}
