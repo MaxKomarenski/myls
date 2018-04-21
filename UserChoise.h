@@ -12,6 +12,9 @@
 #include <ostream>
 #include <sstream>
 #include <iostream>
+#include "boost/filesystem/operations.hpp"
+
+#include <sys/stat.h>
 
 class UserChoise {
 
