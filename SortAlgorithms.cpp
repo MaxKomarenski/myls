@@ -95,9 +95,16 @@ void SortAlgorithms::at_first_show_the_directories(std::vector<std::string> &v, 
 
 sort_method_t SortAlgorithms::get_method_by_name(std::string name, UserChoise choise)const {
 
-    if(name == choise.getSortByName()){
+    if(name == choise.getSortByName())
         return SortAlgorithms::sort_by_name;
-    }
+    else if(name == choise.getSortByLastModifyTime())
+        return SortAlgorithms::sort_by_last_write_time;
+    else if(name == choise.getSortBySize())
+        return SortAlgorithms::sort_by_size;
+    else if(name == choise.getSortByExtension())
+        return SortAlgorithms::sort_by_extension;
+
+
 
     return nullptr;
 }
