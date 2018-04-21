@@ -6,7 +6,7 @@
 #include <iostream>
 #include <ctime>
 #include <boost/filesystem/operations.hpp>
-#include "Sort.h"
+#include "SortAlgorithms.h"
 
 long Sort::GetFileSize(std::string filename)
 {
