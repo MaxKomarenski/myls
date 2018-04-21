@@ -51,11 +51,16 @@ int main(int argc, char *argv[]) {
 //            std::cout << element << std::endl;
 //        }
 
-    UserChoise userChoise;
-    userChoise.parseArgs(argc, argv);
+//    UserChoise userChoise;
+//    userChoise.parseArgs(argc, argv);
+//
+//
+//    std::cout<<userChoise;
 
+    std::vector<std::string> v = getFiles();
+    Sort sort;
 
-    std::cout<<userChoise;
+    //sort.sort_by_last_write_time(v);
 
 
         return 0;

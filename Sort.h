@@ -18,7 +18,12 @@ class Sort {
 public:
     long GetFileSize(std::string filename);
 
-    void sort_by_size(std::vector<std::string> &v);
+    void sort_by_size(std::vector<std::string> &v, bool type);
+    void sort_by_last_write_time(std::vector<std::string> &v, bool type);
+    void sort_by_extension(std::vector<std::string> &v, bool type);
+    void sort_by_name(std::vector<std::string> &v, bool type);
+    void at_first_show_the_directories(std::vector<std::string> &v, bool type);
+    void show_special_file(std::vector<std::string> &v, bool type);
 };
 
 
