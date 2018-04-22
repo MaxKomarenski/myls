@@ -12,7 +12,6 @@
 #include <map>
 #include <fstream>
 #include "UserChoise.h"
-#include "Typedefs.h"
 
 
 

@@ -10,7 +10,7 @@
 #include "UserChoise.h"
 #include <vector>
 #include <string>
-#include "Typedefs.h"
+
 
 
 class Sorter {
@@ -19,7 +19,6 @@ private:
     SortAlgorithms algorithms;
     UserChoise userChoice;
 
-    sort_method_t  sort_method;
 
 
 public:
