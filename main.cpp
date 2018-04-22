@@ -5,6 +5,7 @@
 #include "boost/filesystem/operations.hpp"
 #include "SortAlgorithms.h"
 #include "UserChoise.h"
+#include "Sorter.h"
 #include <ctime>
 
 
@@ -34,10 +35,23 @@ int main(int argc, char *argv[]) {
 
     UserChoise userChoise;
     std::vector<std::string> dirs = userChoise.parseArgs(argc, argv);
+    std::vector<std::string> files = getFiles(dirs[0]);
+
+
+    std::cout<<"AFTER SORT\n";
+
+    SortAlgorithms algorithms;
+    Sorter sorter(algorithms, userChoise);
+    files =  sorter.sort(files);
+
+
+
 
     struct stat path_stat;
-    for(auto elem : dirs){
-        stat(elem.c_str(), &path_stat);
+    for(auto elem : files){
+        std::string path = dirs[0]+"/"+elem;
+        //std::cout<<path<<"\n";
+        stat(path.c_str(), &path_stat);
 
         if (!S_ISDIR(path_stat.st_mode)) {
             if(userChoise.isDetailedDescription()){

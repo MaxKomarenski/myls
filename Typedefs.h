@@ -9,4 +9,7 @@
 #include "SortAlgorithms.h"
 typedef void (*sort_method_t)(std::vector<std::string>&v, bool type);
 
+
+
+
 #endif //MYLS_TYPEDEFS_H

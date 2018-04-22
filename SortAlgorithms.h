@@ -27,8 +27,11 @@ public:
     void at_first_show_the_directories(std::vector<std::string> &v, bool type);
     void show_special_file(std::vector<std::string> &v, bool type);
 
-    sort_method_t get_method_by_name(std::string name, UserChoise choise)const;
+    typedef void (SortAlgorithms::*sortFn)(std::vector<std::string>&v, bool type);
+    sortFn get_method_by_name(std::string name, UserChoise choise)const;
 };
+
+
 
 
 #endif //MYLS_SORT_H
