@@ -55,7 +55,21 @@ void SortAlgorithms::sort_by_last_write_time(std::vector<std::string> &v, bool t
 }
 
 void SortAlgorithms::show_special_file(std::vector<std::string> &v, bool type) {
-
+    std::map<std::string, int> m;
+    struct stat st;
+    for(std::string s:v) {
+        stat(s.c_str(), &st);
+        if(s.substr(s.find_last_of(".") + 1) == "exe")
+            m[s] = 5;
+        else if (boost::filesystem::symlink_status(s).type() == boost::filesystem::symlink_file)
+            m[s] = 4;
+        else if(S_ISFIFO(st.st_mode))
+            m[s] = 3;
+        else if(S_ISSOCK(st.st_mode))
+            m[s] = 2;
+        else
+            m[s] = 1;
+    }
 }
 
 void SortAlgorithms::sort_by_extension(std::vector<std::string> &v, bool type) {
