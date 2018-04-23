@@ -93,15 +93,16 @@ void SortAlgorithms::at_first_show_the_directories(std::vector<std::string> &v, 
         std::reverse(v.begin(), v.end());
 }
 
-SortAlgorithms::sortFn SortAlgorithms::get_method_by_name(std::string name, UserChoise choise) const {
-    if(name == choise.getSortByName())
-        return SortAlgorithms::sort_by_name;
-    else if(name == choise.getSortByLastModifyTime())
-        return SortAlgorithms::sort_by_last_write_time;
-    else if(name == choise.getSortBySize())
-        return SortAlgorithms::sort_by_size;
-    else if(name == choise.getSortByExtension())
-        return SortAlgorithms::sort_by_extension;
+SortAlgorithms::sortFn SortAlgorithms::get_method_by_name(std::string name) const {
+    return functions.at(name);
+}
 
-    return nullptr;
+SortAlgorithms::SortAlgorithms(const UserChoise &userChoise) {
+
+    functions[userChoise.getSortByName()] = SortAlgorithms::sort_by_name;
+    functions[userChoise.getSortByExtension()] = SortAlgorithms::sort_by_extension;
+    functions[userChoise.getSortByLastModifyTime()] = SortAlgorithms::sort_by_last_write_time;
+    functions[userChoise.getSortBySize()] = SortAlgorithms::sort_by_size;
+    functions[userChoise.getDirectoriesFirstToken()] = SortAlgorithms::at_first_show_the_directories;
+
 }

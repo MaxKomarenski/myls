@@ -16,7 +16,10 @@
 
 
 class SortAlgorithms {
-public:
+
+    typedef void (SortAlgorithms::*sortFn)(std::vector<std::string>&v, bool type);
+private:
+    std::map<std::string,sortFn> functions;
     long GetFileSize(std::string filename);
     bool is_dir(std::string path);
     void sort_by_size(std::vector<std::string> &v, bool type);
@@ -26,8 +29,10 @@ public:
     void at_first_show_the_directories(std::vector<std::string> &v, bool type);
     void show_special_file(std::vector<std::string> &v, bool type);
 
-    typedef void (SortAlgorithms::*sortFn)(std::vector<std::string>&v, bool type);
-    sortFn get_method_by_name(std::string name, UserChoise choise)const;
+public:
+    SortAlgorithms(const UserChoise &userChoise);
+
+    sortFn get_method_by_name(std::string name)const;
 };
 
 

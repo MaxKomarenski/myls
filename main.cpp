@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
 
     std::cout<<"AFTER SORT\n";
 
-    SortAlgorithms algorithms;
+    SortAlgorithms algorithms(userChoise);
     Sorter sorter(algorithms, userChoise);
     files =  sorter.sort(files);
 
