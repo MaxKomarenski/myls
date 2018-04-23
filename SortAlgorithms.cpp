@@ -105,6 +105,7 @@ void SortAlgorithms::at_first_show_the_directories(std::vector<std::string> &v, 
 
     if(type)
         std::reverse(v.begin(), v.end());
+
 }
 
 SortAlgorithms::sortFn SortAlgorithms::get_method_by_name(std::string name) const {
