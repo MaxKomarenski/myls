@@ -100,9 +100,7 @@ void SortAlgorithms::at_first_show_the_directories(std::vector<std::string> &v, 
         else
             m[s] = 0;
     }
-
     std::sort(v.begin(),v.end(), [&m](const std::string& a, const std::string& b){return m[a] > m[b]; });
-
     if(type)
         std::reverse(v.begin(), v.end());
 
