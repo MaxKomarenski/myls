@@ -7,6 +7,7 @@
 #include "UserChoise.h"
 #include "Printer.h"
 #include "Sorter.h"
+#include "FileResolver.h"
 #include <ctime>
 
 
@@ -21,22 +22,15 @@ bool find_help(std::vector<std::string> &v){
     return false;
 }
 
-std::vector<std::string> getFiles(std::string dir){
-    std::vector<std::string> v;
-    boost::filesystem::path path =  dir;
 
-    for(boost::filesystem::path  p : boost::filesystem::directory_iterator(path.string())){
-        v.push_back(dir+"/"+p.filename().string());
-    }
-    return v;
-}
 
 
 int main(int argc, char *argv[]) {
 
     UserChoise userChoise;
     std::vector<std::string> dirs = userChoise.parseArgs(argc, argv);
-    std::vector<std::string> files = getFiles(dirs[0]);
+    FileResolver fileRolver(userChoise);
+    std::vector<std::string> files = fileRolver.getFiles(dirs[0]);
 
 
     std::cout<<"AFTER SORT\n";
@@ -87,4 +81,5 @@ int main(int argc, char *argv[]) {
 
 
 }
+
 

@@ -16,6 +16,7 @@ UserChoise::UserChoise() {
     reverceSortingOrder = false;
     specialFiles = false;
     markedSpecialFiles = false;
+    recursive = false;
 }
 
 const std::string &UserChoise::getSortByName() const {
@@ -102,7 +103,11 @@ std::vector<std::string> UserChoise::parseArgs(int argc, char **argv) {
             markedSpecialFiles = true;
         else if(std::strcmp(argv[i], "-l") == 0){
             detailedDescription = true;
-        } else{
+        }
+        else if(std::strcmp(argv[i], "-R") == 0){
+            recursive = true;
+        }
+        else{
             struct stat sb;
             if(stat(argv[i], &sb) != -1){
                 dirs.emplace_back(argv[i]);
@@ -158,6 +163,14 @@ const std::string &UserChoise::getDirectoriesFirstToken() const {
 
 const std::string &UserChoise::getSpecialFilesToken() const {
     return specialFilesToken;
+}
+
+bool UserChoise::isRecursive() const {
+    return recursive;
+}
+
+void UserChoise::setRecursive(bool recursive) {
+    UserChoise::recursive = recursive;
 }
 
 

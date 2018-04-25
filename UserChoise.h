@@ -38,6 +38,9 @@ private:
     bool reverceSortingOrder; // Опція згідно якої поряд сорутвання інвертується
     bool specialFiles; // спеціальні файли
     bool markedSpecialFiles; // вказує  типи спеціальних файлів
+    bool recursive; //рекурсивно проходиться по всіх директоріях.
+
+private:
 
     std::map<std::string, bool> choises;
     void changeChoise(std::string choise);
@@ -73,6 +76,10 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const UserChoise &choise);
 
     bool isDetailedDescription() const;
+
+    bool isRecursive() const;
+
+    void setRecursive(bool recursive);
 
     UserChoise();
 
