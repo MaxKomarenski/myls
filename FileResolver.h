@@ -19,6 +19,9 @@ private:
 public:
     FileResolver(const UserChoise &userChoise);
 
+    const std::vector<std::string> &getFiles() const;
+
+    void setFiles(const std::vector<std::string> &files);
 
     std::vector<std::string> getFiles(std::string dir);
 
